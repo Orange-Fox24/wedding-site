@@ -1,14 +1,12 @@
 {
   "version": 2,
   "name": "wedding-invitation-katya-vlad",
-  "alias": ["wedding-katya-vlad-2026.ru", "свадьба-екатерина-владислав.ру"],
   "public": true,
   
   "builds": [
     {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "." }
+      "src": "/*",
+      "use": "@vercel/static"
     }
   ],
   
@@ -38,10 +36,6 @@
         {
           "key": "Referrer-Policy",
           "value": "strict-origin-when-cross-origin"
-        },
-        {
-          "key": "Permissions-Policy",
-          "value": "camera=(), microphone=(), geolocation=()"
         }
       ]
     },
@@ -55,7 +49,7 @@
       ]
     },
     {
-      "source": "/(.*).(css|js)",
+      "source": "/(.*)\\.(css|js)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -64,7 +58,7 @@
       ]
     },
     {
-      "source": "/(.*).(jpg|jpeg|png|gif|svg|ico|webp|mp3|mp4)",
+      "source": "/(.*)\\.(jpg|jpeg|png|gif|svg|ico|webp|mp3|mp4)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -76,11 +70,7 @@
   
   "rewrites": [
     {
-      "source": "/",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/(.+)",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ],
@@ -96,22 +86,5 @@
       "destination": "/",
       "permanent": true
     }
-  ],
-  
-  "env": {
-    "NODE_ENV": "production"
-  },
-  
-  "github": {
-    "silent": true,
-    "autoAlias": true
-  },
-  
-  "regions": ["fra1"],
-  
-  "features": {
-    "webAnalytics": {
-      "enabled": true
-    }
-  }
+  ]
 }
