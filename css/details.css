@@ -10,19 +10,18 @@
   overflow: hidden;
 }
 
-/* УБИРАЕМ плашку (.details-content) */
 .details-content {
   position: relative;
   z-index: 2;
   text-align: center;
   width: 100%;
   max-width: 800px;
-  /* Убираем все стили плашки: */
-  padding: 0; /* Убираем внутренние отступы */
-  background: none; /* Убираем фон */
-  backdrop-filter: none; /* Убираем размытие */
-  border-radius: 0; /* Убираем скругления */
-  border: none; /* Убираем границу */
+
+  padding: 0;
+  background: none;
+  backdrop-filter: none;
+  border-radius: 0;
+  border: none;
 }
 
 /* Заголовок Details */
@@ -50,7 +49,7 @@
 /* Текст о подарках */
 .gifts-text {
   margin-bottom: 50px;
-  text-align: center; /* Меняем с left на center для лучшего вида без плашки */
+  text-align: center;
 }
 
 .gifts-text p {
@@ -83,7 +82,7 @@
     transparent
   );
   margin: 60px auto;
-  max-width: 500px; /* Увеличиваем для лучшего вида */
+  max-width: 500px;
 }
 
 /* Заголовок "ОРГАНИЗАТОР" */

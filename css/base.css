@@ -244,7 +244,6 @@ body {
   }
 }
 
-/* Печать */
 @media print {
   .music-player,
   .lock-wrapper,
@@ -262,9 +261,6 @@ body {
     break-inside: avoid;
   }
 
-  /* Добавьте в конец файла base.css */
-
-  /* Общие стили для отображения секций при скролле */
   section {
     opacity: 0;
     transform: translateY(30px);
@@ -276,13 +272,11 @@ body {
     transform: translateY(0);
   }
 
-  /* Гарантируем, что последний блок всегда показывается */
   .final-section {
     opacity: 1 !important;
     transform: translateY(0) !important;
   }
 
-  /* Защита от переполнения текста */
   h1,
   h2,
   h3,

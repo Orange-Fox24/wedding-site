@@ -4,8 +4,8 @@
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Всегда вверху */
-  padding-top: 15vh; /* Отступ сверху для всех устройств */
+  align-items: flex-start;
+  padding-top: 15vh;
   overflow: hidden;
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)),
     url("../assets/images/couple-final.jpg") center/cover no-repeat;
@@ -20,10 +20,10 @@
   width: 100%;
   max-width: 1200px;
   padding: 0 20px;
-  margin-top: 10vh; /* Добавляем отступ сверху */
+  margin-top: 10vh;
 }
 
-/* Заголовок "Ждем Вас" - ВСЕГДА ВВЕРХУ */
+/* Заголовок "Ждем Вас"  */
 .waiting-title {
   font-family: var(--great-vibes);
   font-size: clamp(3.5rem, 7vw, 6rem);
@@ -35,7 +35,7 @@
   animation: waitingGlow 3s infinite alternate;
   will-change: text-shadow;
   position: relative;
-  z-index: 4; /* Выше сияния */
+  z-index: 4;
 }
 
 @keyframes waitingGlow {
@@ -48,11 +48,10 @@
   }
 }
 
-/* Подпись - ТОЖЕ ВВЕРХУ */
 .signature {
   margin-top: 30px;
   position: relative;
-  z-index: 4; /* Выше сияния */
+  z-index: 4;
 }
 
 .signature p {
@@ -76,23 +75,23 @@
   text-shadow: 0 2px 25px rgba(0, 0, 0, 0.9), 0 0 25px rgba(132, 0, 23, 0.5);
 }
 
-/* Бордовое сияние ПОД ТЕКСТОМ (обязательно!) */
+/* Бордовое сияние ПОД ТЕКСТОМ  */
 .final-glow {
   position: absolute;
-  top: 40%; /* Позиционируем ПОД текстом */
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 160%;
   height: 140%;
   background: radial-gradient(
     ellipse at center 40%,
-    /* Центр сияния ПОД текстом */ rgba(132, 0, 23, 0.9) 0%,
+    rgba(132, 0, 23, 0.9) 0%,
     rgba(107, 2, 19, 0.7) 25%,
     rgba(78, 0, 14, 0.5) 45%,
     transparent 80%
   );
-  filter: blur(80px); /* Усиливаем размытие для большего эффекта */
-  z-index: 3; /* Под текстом, но над фоном */
+  filter: blur(80px);
+  z-index: 3;
   border-radius: 50%;
   animation: finalGlowPulse 4s infinite alternate ease-in-out;
   pointer-events: none;
@@ -121,7 +120,7 @@
   bottom: 0;
   background: radial-gradient(
     ellipse at center 40%,
-    /* Совпадает с сиянием */ transparent 10%,
+    transparent 10%,
     rgba(26, 0, 4, 0.7) 40%,
     rgba(26, 0, 4, 0.9) 100%
   );
@@ -422,7 +421,6 @@
   }
 }
 
-/* Печать */
 @media print {
   .final-section {
     background: none !important;

@@ -51,7 +51,6 @@
   background: var(--dark-color);
 }
 
-/* Текст */
 .timer-text {
   margin-bottom: 50px;
 }
@@ -350,11 +349,11 @@
     overflow-x: auto;
     justify-content: flex-start;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
   }
 
   .countdown-timer::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Edge */
+    display: none;
   }
 
   .time-unit {
@@ -545,7 +544,6 @@
   }
 }
 
-/* Печать */
 @media print {
   .timer-section {
     background: none !important;

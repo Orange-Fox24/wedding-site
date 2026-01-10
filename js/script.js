@@ -214,7 +214,7 @@ const app = {
         document.documentElement.classList.remove('no-js');
         document.documentElement.classList.add('js');
         
-        console.log('✅ Приложение инициализировано');
+        console.log('Приложение инициализировано');
         this.logWeddingInfo();
     },
 
@@ -318,7 +318,7 @@ const app = {
         // Обработка ошибок загрузки музыки
         if (elements.backgroundMusic) {
             elements.backgroundMusic.addEventListener('error', (e) => {
-                console.error('❌ Ошибка загрузки музыки:', e);
+                console.error('Ошибка загрузки музыки:', e);
                 elements.musicToggle.style.display = 'none';
                 elements.musicPlayer.style.opacity = '0';
                 elements.musicPlayer.style.pointerEvents = 'none';
@@ -342,7 +342,7 @@ const app = {
     checkFirstVisit() {
         const hasVisited = localStorage.getItem('weddingInvitationVisited');
         if (!hasVisited) {
-            console.log('👋 Первое посещение сайта');
+            console.log('Первое посещение сайта');
             localStorage.setItem('weddingInvitationVisited', 'true');
         }
     },
@@ -352,7 +352,7 @@ const app = {
         if (state.isUnlocked) return;
         
         state.isUnlocked = true;
-        console.log('🔓 Открытие приглашения...');
+        console.log('Открытие приглашения...');
         
         // Анимация открытия замка
         elements.lockIcon.classList.add('open');
@@ -464,7 +464,7 @@ const app = {
             elements.musicIcon.classList.add('fa-volume-up');
             state.isMusicPlaying = false;
             elements.musicToggle.title = 'Включить музыку';
-            console.log('🎵 Музыка выключена');
+            console.log('Музыка выключена');
         } else {
             elements.backgroundMusic.volume = CONFIG.MUSIC_VOLUME;
             elements.backgroundMusic.play()
@@ -473,10 +473,10 @@ const app = {
                     elements.musicIcon.classList.add('fa-volume-mute');
                     state.isMusicPlaying = true;
                     elements.musicToggle.title = 'Выключить музыку';
-                    console.log('🎵 Музыка включена');
+                    console.log('Музыка включена');
                 })
                 .catch(error => {
-                    console.log('❌ Ошибка воспроизведения:', error);
+                    console.log('Ошибка воспроизведения:', error);
                     elements.musicIcon.classList.remove('fa-volume-up');
                     elements.musicIcon.classList.add('fa-volume-off');
                     elements.musicToggle.title = 'Ошибка воспроизведения';
@@ -622,7 +622,7 @@ const app = {
     initCalendar() {
         if (!elements.highlightedDay) return;
         
-        console.log('📅 Инициализация календаря...');
+        console.log('Инициализация календаря...');
         
         // Анимация появления дней
         const days = document.querySelectorAll('.calendar-days .day');
@@ -658,12 +658,12 @@ const app = {
             }, 300);
         });
         
-        console.log('✅ Календарь инициализирован');
+        console.log('Календарь инициализирован');
     },
 
     // Инициализация цветовой палитры
     initColorPalette() {
-        console.log('🎨 Инициализация цветовой палитры...');
+        console.log('Инициализация цветовой палитры...');
         
         elements.colorBoxes.forEach(box => {
             box.addEventListener('click', async () => {
@@ -671,10 +671,10 @@ const app = {
                 
                 const success = await utils.copyToClipboard(hex);
                 if (success) {
-                    console.log('🎨 Скопирован цвет:', hex);
+                    console.log('Скопирован цвет:', hex);
                     utils.showNotification(`Скопирован цвет: ${hex}`);
                 } else {
-                    console.log('❌ Ошибка копирования цвета');
+                    console.log('Ошибка копирования цвета');
                     utils.showNotification(`Цвет: ${hex} (скопируйте вручную)`, true);
                 }
             });
@@ -692,12 +692,12 @@ const app = {
             });
         });
         
-        console.log('✅ Цветовая палитра инициализирована');
+        console.log('Цветовая палитра инициализирована');
     },
 
     // Инициализация таймера обратного отсчета
     initCountdownTimer() {
-        console.log('⏰ Инициализация таймера...');
+        console.log('Инициализация таймера...');
         
         // Добавляем классы для адаптивности
         this.setupTimerClasses();
@@ -792,7 +792,7 @@ const app = {
             app.updateTimerVisibilityOnResize();
         }, 250));
         
-        console.log('✅ Таймер инициализирован (Красноярское время UTC+7)');
+        console.log('Таймер инициализирован (Красноярское время UTC+7)');
     },
 
     // Новая функция для настройки классов таймера
@@ -942,17 +942,17 @@ const app = {
 
     // Логирование информации о свадьбе
     logWeddingInfo() {
-        console.log('💍 Свадебное приглашение загружено!');
-        console.log('📅 Дата свадьбы: 26 ФЕВРАЛЯ 2026');
-        console.log('👰🤵 Молодожены: Екатерина • Владислав');
-        console.log('📍 ЗАГС: ул. Фабричная, 3 (14:30)');
-        console.log('🏡 Загородный домик: ул. Лермонтова, 6а (16:00)');
-        console.log('🎨 Цветовая палитра:', CONFIG.COLOR_PALETTE.join(' → '));
-        console.log('📋 Организатор: ИЛЬЯ (Telegram)');
-        console.log('📝 Анкета гостя: подтверждение до 26.01.2026');
-        console.log('📸 Telegram группа для фото и видео');
-        console.log('⏳ Таймер обратного отсчета до 26 февраля 2026');
-        console.log('💖 Финальный блок: Ждем Вас!');
+        console.log('Свадебное приглашение загружено!');
+        console.log('Дата свадьбы: 26 ФЕВРАЛЯ 2026');
+        console.log('Молодожены: Екатерина • Владислав');
+        console.log('ЗАГС: ул. Фабричная, 3 (14:30)');
+        console.log('Загородный домик: ул. Лермонтова, 6а (16:00)');
+        console.log('Цветовая палитра:', CONFIG.COLOR_PALETTE.join(' → '));
+        console.log('Организатор: ИЛЬЯ (Telegram)');
+        console.log('Анкета гостя: подтверждение до 26.01.2026');
+        console.log('Telegram группа для фото и видео');
+        console.log('Таймер обратного отсчета до 26 февраля 2026');
+        console.log('Финальный блок: Ждем Вас!');
         
         console.log('\n=== УПРАВЛЕНИЕ ===');
         console.log('• Нажмите на замок, чтобы открыть приглашение');
@@ -965,18 +965,18 @@ const app = {
         console.log('• На мобильных: свайп вверх/вниз для навигации');
         
         console.log('\n=== БЛОКИ ===');
-        console.log('1. 🎬 Приветствие с замком (чёрно-белое → цветное)');
-        console.log('2. 🎵 Музыка и приветствие');
-        console.log('3. 📅 Календарь с датой');
-        console.log('4. 📍 Места проведения');
-        console.log('5. 👗 Dress Code и палитра');
-        console.log('6. 🎁 Подарки и организатор');
-        console.log('7. 📝 Анкета гостя');
-        console.log('8. 📸 Telegram для фото');
-        console.log('9. ⏳ Таймер обратного отсчета (адаптивный)');
-        console.log('10. 💖 Финальное обращение (всегда сверху)');
+        console.log('1. Приветствие с замком (чёрно-белое → цветное)');
+        console.log('2. Музыка и приветствие');
+        console.log('3. Календарь с датой');
+        console.log('4. Места проведения');
+        console.log('5. Dress Code и палитра');
+        console.log('6. Подарки и организатор');
+        console.log('7. Анкета гостя');
+        console.log('8. Telegram для фото');
+        console.log('9. Таймер обратного отсчета (адаптивный)');
+        console.log('10. Финальное обращение (всегда сверху)');
         
-        console.log('\n💝 С наилучшими пожеланиями, Владислав и Екатерина 💝');
+        console.log('\n С наилучшими пожеланиями, Владислав и Екатерина ');
     }
 };
 
@@ -992,23 +992,23 @@ document.addEventListener('DOMContentLoaded', () => {
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/service-worker.js').then(registration => {
-            console.log('✅ ServiceWorker зарегистрирован:', registration.scope);
+            console.log('ServiceWorker зарегистрирован:', registration.scope);
         }).catch(error => {
-            console.log('❌ Ошибка регистрации ServiceWorker:', error);
+            console.log('Ошибка регистрации ServiceWorker:', error);
         });
     });
 }
 
 // ===== ОБРАБОТКА ОШИБОК =====
 window.addEventListener('error', (e) => {
-    console.error('❌ Произошла ошибка:', e.error);
+    console.error('Произошла ошибка:', e.error);
 });
 
 window.addEventListener('unhandledrejection', (e) => {
-    console.error('❌ Необработанное обещание:', e.reason);
+    console.error('Необработанное обещание:', e.reason);
 });
 
-// Экспорт для тестирования (если нужно)
+// Экспорт для тестирования 
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { app, utils, CONFIG };
 }

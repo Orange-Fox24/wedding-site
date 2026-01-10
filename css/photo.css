@@ -16,15 +16,14 @@
   text-align: center;
   width: 100%;
   max-width: 800px;
-  /* УБИРАЕМ плашку: */
-  padding: 0; /* Убираем padding */
-  background: none; /* Убираем фон */
-  backdrop-filter: none; /* Убираем размытие */
-  border-radius: 0; /* Убираем скругления */
-  border: none; /* Убираем границу */
+
+  padding: 0;
+  background: none;
+  backdrop-filter: none;
+  border-radius: 0;
+  border: none;
 }
 
-/* Заголовок - Great Vibes */
 .photo-title {
   font-family: var(--great-vibes);
   font-size: clamp(2.5rem, 5vw, 4rem);
@@ -35,7 +34,6 @@
   text-shadow: 0 2px 15px rgba(0, 0, 0, 0.7);
 }
 
-/* Текст - Montserrat */
 .photo-text {
   margin-bottom: 70px;
 }
@@ -55,12 +53,11 @@
   height: 30px;
 }
 
-/* Кнопка - ТЕПЕРЬ КАК В БЛОКЕ АНКЕТЫ (без иконки Telegram) */
 .telegram-group-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 15px; /* Уменьшаем gap, так как нет иконки */
+  gap: 15px;
   background: rgba(132, 0, 23, 0.8);
   color: var(--text-color);
   font-family: var(--playfair);
@@ -76,8 +73,7 @@
   position: relative;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  /* УБИРАЕМ иконку: */
-  /* backdrop-filter: blur(5px); - убираем, так как нет иконки */
+
   will-change: transform, background, border-color, box-shadow;
 }
 
@@ -119,15 +115,9 @@
   z-index: 1;
 }
 
-/* УБИРАЕМ стили для иконки Telegram */
 .telegram-group-btn i {
-  display: none; /* Скрываем иконку */
+  display: none;
 }
-
-/* Эффект свечения для иконки - УБИРАЕМ */
-/* .telegram-group-btn:hover i {
-    filter: drop-shadow(0 0 8px rgba(0, 136, 204, 0.5));
-} */
 
 /* Анимация появления */
 @keyframes photoAppear {
@@ -173,7 +163,7 @@
   .telegram-group-btn {
     padding: 18px 35px;
     font-size: clamp(1rem, 1.8vw, 1.3rem);
-    gap: 12px; /* Уменьшаем gap */
+    gap: 12px;
   }
 }
 
@@ -205,7 +195,7 @@
   .telegram-group-btn {
     padding: 16px 30px;
     font-size: clamp(0.95rem, 1.6vw, 1.2rem);
-    gap: 10px; /* Уменьшаем gap */
+    gap: 10px;
   }
 }
 
@@ -237,7 +227,7 @@
   .telegram-group-btn {
     padding: 14px 25px;
     font-size: 0.9rem;
-    gap: 8px; /* Уменьшаем gap */
+    gap: 8px;
     border-width: 1px;
   }
 }
@@ -264,7 +254,7 @@
   .telegram-group-btn {
     padding: 12px 20px;
     font-size: 0.85rem;
-    gap: 6px; /* Уменьшаем gap */
+    gap: 6px;
     letter-spacing: 1px;
   }
 }
