@@ -1,0 +1,313 @@
+/* ===== БЛОК 2: МУЗЫКА И ПРИВЕТСТВИЕ ===== */
+.music-section {
+  background-color: var(--primary-color);
+  padding: 80px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 80px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.vertical-line {
+  width: 1px;
+  height: 120px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--text-color),
+    transparent
+  );
+  flex-shrink: 0;
+}
+
+.music-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  flex: 0 1 auto;
+}
+
+.music-control p {
+  font-family: var(--montserrat);
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 300px;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+/* Приветственный текст */
+.greeting-content {
+  text-align: center;
+  max-width: 800px;
+  position: relative;
+  z-index: 2;
+}
+
+.greeting-content h2 {
+  font-family: var(--playfair);
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: 3px;
+  margin-bottom: 40px;
+  color: var(--text-color);
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 20px;
+  text-shadow: 0 3px 15px rgba(0, 0, 0, 0.7);
+}
+
+.greeting-content h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 2px;
+  background: var(--dark-color);
+}
+
+.greeting-text {
+  font-family: var(--montserrat);
+  font-size: clamp(1rem, 1.6vw, 1.3rem);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 400;
+}
+
+.greeting-text p {
+  margin-bottom: 20px;
+}
+
+.greeting-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* Анимация появления */
+@keyframes musicAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.music-section.visible .greeting-content {
+  animation: musicAppear 1s ease-out forwards;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+
+/* Планшеты */
+@media (max-width: 1024px) {
+  .music-section {
+    padding: 60px 20px;
+  }
+
+  .section-divider {
+    margin-bottom: 60px;
+    gap: 30px;
+  }
+
+  .vertical-line {
+    height: 100px;
+  }
+
+  .music-control p {
+    font-size: 1rem;
+    max-width: 280px;
+  }
+
+  .greeting-content h2 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin-bottom: 35px;
+  }
+
+  .greeting-text {
+    font-size: clamp(0.95rem, 1.5vw, 1.2rem);
+  }
+}
+
+/* Большие телефоны */
+@media (max-width: 768px) {
+  .music-section {
+    padding: 50px 15px;
+  }
+
+  .section-divider {
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 50px;
+  }
+
+  .vertical-line {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--text-color),
+      transparent
+    );
+  }
+
+  .music-control {
+    gap: 15px;
+  }
+
+  .music-control p {
+    font-size: 0.95rem;
+    max-width: 250px;
+    line-height: 1.3;
+  }
+
+  .greeting-content h2 {
+    font-size: clamp(1.4rem, 2.8vw, 2rem);
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+  }
+
+  .greeting-content h2::after {
+    width: 80px;
+    height: 1.5px;
+  }
+
+  .greeting-text {
+    font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+    line-height: 1.4;
+  }
+
+  .greeting-text p {
+    margin-bottom: 15px;
+  }
+}
+
+/* Телефоны */
+@media (max-width: 480px) {
+  .music-section {
+    padding: 40px 12px;
+    min-height: 80vh;
+  }
+
+  .section-divider {
+    margin-bottom: 40px;
+    gap: 15px;
+  }
+
+  .vertical-line {
+    width: 100px;
+  }
+
+  .music-control p {
+    font-size: 0.9rem;
+    max-width: 220px;
+    line-height: 1.3;
+  }
+
+  .greeting-content h2 {
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    letter-spacing: 2px;
+  }
+
+  .greeting-content h2::after {
+    width: 70px;
+  }
+
+  .greeting-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .greeting-text p {
+    margin-bottom: 12px;
+  }
+}
+
+/* Очень маленькие телефоны */
+@media (max-width: 360px) {
+  .music-section {
+    padding: 30px 10px;
+  }
+
+  .section-divider {
+    margin-bottom: 30px;
+    gap: 12px;
+  }
+
+  .vertical-line {
+    width: 80px;
+  }
+
+  .music-control p {
+    font-size: 0.85rem;
+    max-width: 200px;
+  }
+
+  .greeting-content h2 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    letter-spacing: 1.5px;
+  }
+
+  .greeting-content h2::after {
+    width: 60px;
+  }
+
+  .greeting-text {
+    font-size: 0.85rem;
+    line-height: 1.3;
+  }
+
+  .greeting-text p {
+    margin-bottom: 10px;
+  }
+}
+
+/* Ландшафтная ориентация */
+@media (max-height: 600px) and (orientation: landscape) {
+  .music-section {
+    padding: 30px 15px;
+    min-height: 120vh;
+  }
+
+  .section-divider {
+    margin-bottom: 30px;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .vertical-line {
+    width: 1px;
+    height: 80px;
+  }
+
+  .greeting-content h2 {
+    margin-bottom: 20px;
+  }
+
+  .greeting-text p {
+    margin-bottom: 10px;
+  }
+}

@@ -4,65 +4,316 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Приглашение на свадьбу | Екатерина & Владислав</title>
-    <link rel="stylesheet" href="styles.css" />
-    <!-- Google Fonts -->
+
+    <!-- Мета-теги для SEO и соцсетей -->
+    <meta
+      name="description"
+      content="Приглашение на свадьбу Екатерины и Владислава 26 февраля 2026 года"
+    />
+    <meta
+      name="keywords"
+      content="свадьба, приглашение, Екатерина, Владислав, 26 февраля 2026"
+    />
+    <meta name="theme-color" content="#840017" />
+
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="Приглашение на свадьбу | Екатерина & Владислав"
+    />
+    <meta
+      property="og:description"
+      content="26 февраля 2026 года. Присоединяйтесь к нашему празднику!"
+    />
+    <meta property="og:image" content="assets/images/og-image.jpg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ваш-сайт.ру" />
+
+    <!-- Предзагрузка критических ресурсов -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="css/base.css" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500&family=Alex+Brush&family=Tangerine:wght@400;700&display=swap"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap"
+    />
+
+    <!-- Основные стили (ваша структура) -->
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/cover-section.css" />
+    <link rel="stylesheet" href="css/music-section.css" />
+    <link rel="stylesheet" href="css/calendar.css" />
+    <link rel="stylesheet" href="css/venue.css" />
+    <link rel="stylesheet" href="css/dresscode.css" />
+    <link rel="stylesheet" href="css/details.css" />
+    <link rel="stylesheet" href="css/form.css" />
+    <link rel="stylesheet" href="css/photo.css" />
+    <link rel="stylesheet" href="css/timer.css" />
+    <link rel="stylesheet" href="css/final.css" />
+
+    <!-- Шрифты -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-    <!-- Bootstrap Icons -->
+
+    <!-- Font Awesome (отложенная загрузка) -->
     <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+      rel="preload"
+      as="style"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      media="print"
+      onload="this.media='all'"
     />
+
+    <!-- Inline CSS для критических стилей -->
+    <style>
+      /* Критические стили для мгновенной отрисовки */
+      :root {
+        --primary-color: #840017;
+        --text-color: #ffffff;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        color: var(--text-color);
+        background: #1a0004;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Стили для быстрой загрузки первой секции */
+      .cover-section {
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Черно-белый фон (видимый изначально) */
+      .bw-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)),
+          url("assets/images/couple-bw.jpg") center/cover no-repeat;
+        filter: grayscale(100%);
+        opacity: 1;
+        transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* Цветной фон (скрытый изначально) */
+      .color-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
+          url("assets/images/couple-color.jpg") center/cover no-repeat;
+        opacity: 0;
+        transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .cover-title {
+        position: relative;
+        z-index: 2;
+        margin-top: 25vh;
+        text-align: center;
+        animation: fadeInDown 1.2s ease-out;
+      }
+
+      .cover-title h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 600;
+        letter-spacing: 3px;
+        color: var(--text-color);
+        text-transform: uppercase;
+        text-shadow: 0 2px 15px rgba(0, 0, 0, 0.7);
+        padding: 0 20px;
+      }
+
+      .lock-wrapper {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 15vh;
+        cursor: pointer;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .lock-circle {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1.5px solid rgba(255, 255, 255, 0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* Анимации для первой секции */
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      /* Стиль для разделителя имен */
+      .couple-name span.separator::before {
+        content: "ㅤ";
+        color: #4e000e;
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+
+      /* Стили для мобильных устройств */
+      @media (max-width: 768px) {
+        .cover-title h1 {
+          font-size: clamp(1.5rem, 3vw, 2.2rem);
+        }
+
+        .lock-circle {
+          width: 60px;
+          height: 60px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .cover-title {
+          margin-top: 20vh;
+        }
+
+        .cover-title h1 {
+          font-size: 1.3rem;
+          letter-spacing: 2px;
+        }
+
+        .lock-circle {
+          width: 55px;
+          height: 55px;
+        }
+      }
+    </style>
+
+    <noscript>
+      <style>
+        /* Стили для пользователей без JavaScript */
+        .music-player,
+        .lock-wrapper {
+          display: none !important;
+        }
+        .hidden-content {
+          opacity: 1 !important;
+          pointer-events: all !important;
+        }
+        .bw-background {
+          opacity: 0 !important;
+        }
+        .color-background {
+          opacity: 1 !important;
+        }
+      </style>
+    </noscript>
   </head>
   <body>
-    <!-- Музыкальный плеер (появится после открытия замка) -->
-    <div class="music-player" id="musicPlayer">
+    <!-- Музыкальный плеер -->
+    <div class="music-player" id="musicPlayer" aria-label="Музыкальный плеер">
       <button
         class="music-btn"
         id="musicToggle"
         title="Включить/выключить музыку"
+        aria-label="Управление музыкой"
       >
         <i class="fas fa-volume-up" id="musicIcon"></i>
       </button>
-      <audio id="backgroundMusic" loop preload="auto">
+      <audio id="backgroundMusic" loop preload="metadata">
         <source src="assets/music/wedding-music.mp3" type="audio/mpeg" />
-        <source src="assets/music/wedding-music.ogg" type="audio/ogg" />
         Ваш браузер не поддерживает аудио элемент.
       </audio>
     </div>
-    <!-- Аудио для фоновой музыки -->
-    <audio id="backgroundMusic" loop>
-      <source src="assets/music/wedding-music.mp3" type="audio/mpeg" />
-      Ваш браузер не поддерживает аудио.
-    </audio>
 
     <!-- БЛОК 1: ЗАСТАВКА С ЗАМКОМ -->
-    <section class="cover-section" id="coverSection">
-      <!-- Ч/б фон -->
-      <div class="cover-background" id="coverBackground"></div>
+    <section
+      class="cover-section"
+      id="coverSection"
+      aria-label="Главная заставка"
+    >
+      <!-- Фон - ЧЕРНО-БЕЛЫЙ изначально -->
+      <div
+        class="bw-background"
+        id="bwBackground"
+        role="img"
+        aria-label="Черно-белая фотография пары"
+      ></div>
 
-      <!-- Надпись "Приглашение на свадьбу" -->
-      <div class="cover-title">
-        <h1>Приглашение на свадьбу</h1>
+      <!-- Фон - ЦВЕТНОЙ (скрыт изначально) -->
+      <div
+        class="color-background"
+        id="colorBackground"
+        role="img"
+        aria-label="Цветная фотография пары"
+      ></div>
+
+      <!-- Надпись "ПРИГЛАШЕНИЕ НА СВАДЬБУ" -->
+      <div class="cover-title" id="coverTitle">
+        <h1>ПРИГЛАШЕНИЕ НА СВАДЬБУ</h1>
       </div>
 
       <!-- Замок в кружке -->
-      <div class="lock-wrapper" id="lockWrapper">
+      <div
+        class="lock-wrapper"
+        id="lockWrapper"
+        role="button"
+        tabindex="0"
+        aria-label="Разблокировать приглашение"
+      >
         <div class="lock-circle" id="lockCircle">
-          <!-- Изящный тонкий замок SVG -->
           <svg
             class="lock-icon"
             id="lockIcon"
             viewBox="0 0 24 24"
             fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
           >
             <rect
               x="4"
@@ -81,14 +332,27 @@
             />
           </svg>
         </div>
-        <p class="unlock-text">разблокировать</p>
+        <p class="unlock-text">РАЗБЛОКИРОВАТЬ</p>
       </div>
 
-      <!-- Скрытый контент (появится после клика) -->
+      <!-- Скрытый контент -->
       <div class="hidden-content" id="hiddenContent">
+        <!-- Дата свадьбы -->
         <div class="wedding-date">26 ФЕВРАЛЯ 2026</div>
-        <div class="couple-name">Екатерина & Владислав</div>
-        <div class="scroll-indicator">
+
+        <!-- Имена молодоженов -->
+        <div class="couple-name">
+          Екатерина<span class="separator" aria-hidden="true"></span>Владислав
+        </div>
+
+        <!-- Индикатор скролла -->
+        <div
+          class="scroll-indicator"
+          id="scrollIndicator"
+          role="button"
+          tabindex="0"
+          aria-label="Листайте дальше"
+        >
           <div class="scroll-line"></div>
           <p>листайте дальше</p>
         </div>
@@ -96,7 +360,7 @@
     </section>
 
     <!-- БЛОК 2: МУЗЫКА И ПРИВЕТСТВИЕ -->
-    <section class="music-section">
+    <section class="music-section" aria-label="Приветствие">
       <div class="section-divider">
         <div class="vertical-line"></div>
         <div class="music-control">
@@ -122,111 +386,366 @@
     </section>
 
     <!-- БЛОК 3: КАЛЕНДАРЬ -->
-    <section class="calendar-section">
-      <div class="calendar-header">
-        <h2>26 ФЕВРАЛЯ 2026</h2>
-      </div>
+    <section class="calendar-section" aria-label="Дата свадьбы">
+      <div class="calendar-content">
+        <h2 class="calendar-title">26 февраля</h2>
 
-      <div class="calendar-grid">
-        <!-- Февраль 2026 -->
-        <div class="calendar-month">
-          <!-- Числа календаря -->
+        <div class="calendar-grid">
           <div class="calendar-days">
-            <!-- Первая неделя -->
-            <span class="calendar-day">1</span>
-            <span class="calendar-day">2</span>
-            <span class="calendar-day">3</span>
-            <span class="calendar-day">4</span>
-            <span class="calendar-day">5</span>
-            <span class="calendar-day">6</span>
-            <span class="calendar-day">7</span>
-
-            <!-- Вторая неделя -->
-            <span class="calendar-day">8</span>
-            <span class="calendar-day">9</span>
-            <span class="calendar-day">10</span>
-            <span class="calendar-day">11</span>
-            <span class="calendar-day">12</span>
-            <span class="calendar-day">13</span>
-            <span class="calendar-day">14</span>
-
-            <!-- Третья неделя -->
-            <span class="calendar-day">15</span>
-            <span class="calendar-day">16</span>
-            <span class="calendar-day">17</span>
-            <span class="calendar-day">18</span>
-            <span class="calendar-day">19</span>
-            <span class="calendar-day">20</span>
-            <span class="calendar-day">21</span>
-
-            <!-- Четвертая неделя -->
-            <span class="calendar-day">22</span>
-            <span class="calendar-day">23</span>
-            <span class="calendar-day">24</span>
-            <span class="calendar-day">25</span>
-            <span class="calendar-day highlight-day">26</span>
-            <span class="calendar-day">27</span>
-            <span class="calendar-day">28</span>
+            <!-- Дни месяца -->
+            <div class="day">1</div>
+            <div class="day">2</div>
+            <div class="day">3</div>
+            <div class="day">4</div>
+            <div class="day">5</div>
+            <div class="day">6</div>
+            <div class="day">7</div>
+            <div class="day">8</div>
+            <div class="day">9</div>
+            <div class="day">10</div>
+            <div class="day">11</div>
+            <div class="day">12</div>
+            <div class="day">13</div>
+            <div class="day">14</div>
+            <div class="day">15</div>
+            <div class="day">16</div>
+            <div class="day">17</div>
+            <div class="day">18</div>
+            <div class="day">19</div>
+            <div class="day">20</div>
+            <div class="day">21</div>
+            <div class="day">22</div>
+            <div class="day">23</div>
+            <div class="day">24</div>
+            <div class="day">25</div>
+            <div
+              class="day highlighted"
+              data-day="26"
+              aria-label="26 февраля - день свадьбы"
+            >
+              26
+            </div>
+            <div class="day">27</div>
+            <div class="day">28</div>
           </div>
         </div>
-      </div>
 
-      <!-- Аура/сияние вокруг даты -->
-      <div class="date-aura"></div>
+        <div class="calendar-footer">
+          <p>Этот день станет для нас особенным</p>
+        </div>
+      </div>
     </section>
 
     <!-- БЛОК 4: МЕСТО ПРОВЕДЕНИЯ -->
-    <section class="venue-section">
-      <h2 class="venue-title">МЕСТО ПРОВЕДЕНИЯ</h2>
+    <section class="venue-section" aria-label="Места проведения">
+      <div class="venue-content">
+        <h2 class="venue-title">МЕСТО ПРОВЕДЕНИЯ</h2>
 
-      <div class="venue-item">
-        <div class="venue-icon">
-          <i class="fas fa-heart"></i>
-          <i class="fas fa-map-marker-alt"></i>
-        </div>
-        <div class="venue-details">
-          <h3>ЗАГС</h3>
-          <p>ул. Фабричная 3</p>
-        </div>
-      </div>
+        <div class="venue-location">
+          <div class="location-header">
+            <div class="location-icon">
+              <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+            </div>
+            <div class="location-name">
+              <p>ЗАГС</p>
+              <p class="address">ул. Фабричная, 3</p>
+            </div>
+          </div>
 
-      <div class="time-schedule">
-        <div class="time-item">
-          <span>14:15</span>
-          <p>сбор гостей</p>
-        </div>
-        <div class="vertical-divider"></div>
-        <div class="time-item">
-          <span>14:30</span>
-          <p>церемония</p>
-        </div>
-      </div>
+          <div class="schedule">
+            <div class="time-block">
+              <div class="time">14:15</div>
+              <div class="event">сбор гостей</div>
+            </div>
 
-      <div class="venue-item">
-        <div class="venue-icon">
-          <i class="fas fa-heart"></i>
-          <i class="fas fa-home"></i>
-        </div>
-        <div class="venue-details">
-          <h3>Загородный домик</h3>
-          <p>ул. Лермонтова 6а</p>
-        </div>
-      </div>
+            <div class="divider-line"></div>
 
-      <div class="time-schedule">
-        <div class="time-item">
-          <span>16:30</span>
-          <p>банкет</p>
+            <div class="time-block">
+              <div class="time">14:30</div>
+              <div class="event">церемония</div>
+            </div>
+          </div>
         </div>
-        <div class="vertical-divider"></div>
-        <div class="time-item">
-          <span>00:00</span>
-          <p>окончание</p>
+
+        <div class="venue-location">
+          <div class="location-header">
+            <div class="location-icon">
+              <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+            </div>
+            <div class="location-name">
+              <p>Загородный домик</p>
+              <p class="address">ул. Лермонтова, 6а</p>
+            </div>
+          </div>
+
+          <div class="schedule">
+            <div class="time-block">
+              <div class="time">16:00</div>
+              <div class="event">банкет</div>
+            </div>
+
+            <div class="divider-line"></div>
+
+            <div class="time-block">
+              <div class="time">00:00</div>
+              <div class="event">окончание</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Скрипты -->
-    <script src="script.js"></script>
+    <!-- БЛОК 5: DRESS CODE -->
+    <section class="dresscode-section" aria-label="Дресс-код">
+      <div class="dresscode-content">
+        <h2 class="dresscode-title">DRESS CODE</h2>
+
+        <div class="dresscode-text">
+          <p>
+            Нам будет приятно, если Вы поддержите стиль торжества в своих
+            нарядах.
+          </p>
+        </div>
+
+        <h3 class="romance-title">Romance</h3>
+
+        <div class="color-palette-container">
+          <div class="color-palette">
+            <div
+              class="color-box"
+              style="background-color: #1a0004"
+              title="#1A0004"
+              role="button"
+              tabindex="0"
+              aria-label="Цвет #1A0004"
+            ></div>
+            <div
+              class="color-box"
+              style="background-color: #35000a"
+              title="#35000A"
+              role="button"
+              tabindex="0"
+              aria-label="Цвет #35000A"
+            ></div>
+            <div
+              class="color-box"
+              style="background-color: #4e000e"
+              title="#4E000E"
+              role="button"
+              tabindex="0"
+              aria-label="Цвет #4E000E"
+            ></div>
+            <div
+              class="color-box"
+              style="background-color: #6b0213"
+              title="#6B0213"
+              role="button"
+              tabindex="0"
+              aria-label="Цвет #6B0213"
+            ></div>
+            <div
+              class="color-box"
+              style="background-color: #840017"
+              title="#840017"
+              role="button"
+              tabindex="0"
+              aria-label="Цвет #840017"
+            ></div>
+          </div>
+        </div>
+
+        <div class="palette-description">
+          <p>
+            Для этого не обязательно следовать ему полностью — достаточно одного
+            элемента или аксессуара, перекликающегося с нашей темой.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- БЛОК 6: DETAILS -->
+    <section class="details-section" aria-label="Детали свадьбы">
+      <div class="details-content">
+        <h2 class="details-title">Details</h2>
+
+        <h3 class="gifts-title">Подарки и цветы</h3>
+
+        <div class="gifts-text">
+          <p>
+            Чтобы подарки принесли радость, которая останется с нами надолго, мы
+            хотим предложить альтернативу цветам.
+          </p>
+          <p>
+            Вместо букета мы будем рады бутылочке вкусного напитка и
+            трогательной записке с пожеланиями. Мы откроем ее в вашу честь в
+            одну из памятных дат!
+          </p>
+          <p>
+            А еще мы будем безмерно благодарны, если вы подарите нам свои эмоции
+            и таланты. Если вы подготовите творческий номер — песню, танец или
+            доброе слово — это станет для нас самым ценным подарком.
+          </p>
+        </div>
+
+        <div class="details-divider"></div>
+
+        <h3 class="organizer-title">ОРГАНИЗАТОР</h3>
+
+        <div class="organizer-info">
+          <div class="organizer-name">
+            <span>ИЛЬЯ</span>
+            <a
+              href="https://web.telegram.org/k/#@Galyutin_live"
+              target="_blank"
+              class="telegram-link"
+              aria-label="Связаться с Ильей в Telegram"
+              rel="noopener noreferrer"
+            >
+              <i class="fab fa-telegram-plane"></i>
+            </a>
+          </div>
+
+          <div class="organizer-description">
+            <p>
+              Для творческих номеров:<br />Пожалуйста, сообщите ему о вашем
+              выступлении заранее, чтобы мы могли включить его в сценарий нашей
+              свадьбы.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- БЛОК 7: АНКЕТА ГОСТЯ -->
+    <section class="form-section" aria-label="Анкета гостя">
+      <div class="form-content">
+        <h2 class="form-title">АНКЕТА ГОСТЯ</h2>
+
+        <div class="form-text">
+          <p>Подтвердите, пожалуйста,</p>
+          <p>своё присутствие</p>
+          <p class="deadline">ДО 26.01.2026</p>
+        </div>
+
+        <a
+          href="https://forms.yandex.ru/admin/"
+          target="_blank"
+          class="confirm-btn"
+          aria-label="Подтвердить присутствие на свадьбе"
+          rel="noopener noreferrer"
+        >
+          <span>подтвердить</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- БЛОК 8: ФОТО И ВИДЕО -->
+    <section class="photo-section" aria-label="Фото и видео">
+      <div class="photo-content">
+        <h2 class="photo-title">Photo and video</h2>
+
+        <div class="photo-text">
+          <p>Дорогие гости!</p>
+          <p>Мы создали группу в Telegram,</p>
+          <p>где можно будет добавлять</p>
+          <p>фото и видео со свадьбы.</p>
+
+          <div class="text-spacing"></div>
+
+          <p>Давайте поделимся</p>
+          <p>друг с другом счастливыми</p>
+          <p>моментами этого важного дня!</p>
+        </div>
+
+        <!-- Кнопка БЕЗ иконки Telegram -->
+        <a
+          href="https://t.me/+MBnqOkYqHMliNDgy"
+          target="_blank"
+          class="telegram-group-btn"
+          aria-label="Вступить в Telegram группу для фото и видео со свадьбы"
+          rel="noopener noreferrer"
+        >
+          <span>вступить</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- БЛОК 9: ТАЙМЕР ДО СВАДЬБЫ -->
+    <section class="timer-section" aria-label="Таймер до свадьбы">
+      <div class="timer-content">
+        <h2 class="timer-title">ДО СВАДЬБЫ</h2>
+
+        <div class="timer-text">
+          <p>осталось</p>
+        </div>
+
+        <div class="countdown-timer">
+          <div class="time-unit">
+            <div class="time-value" id="months">00</div>
+            <div class="time-label">месяцев</div>
+          </div>
+          <div class="time-separator">:</div>
+          <div class="time-unit">
+            <div class="time-value" id="days">00</div>
+            <div class="time-label">дней</div>
+          </div>
+          <div class="time-separator">:</div>
+          <div class="time-unit">
+            <div class="time-value" id="hours">00</div>
+            <div class="time-label">часов</div>
+          </div>
+          <div class="time-separator">:</div>
+          <div class="time-unit">
+            <div class="time-value" id="minutes">00</div>
+            <div class="time-label">минут</div>
+          </div>
+          <div class="time-separator">:</div>
+          <div class="time-unit">
+            <div class="time-value" id="seconds">00</div>
+            <div class="time-label">секунд</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- БЛОК 10: ФИНАЛЬНЫЙ -->
+    <section class="final-section" aria-label="Заключительная часть">
+      <div class="final-content">
+        <h2 class="waiting-title">Ждем Вас</h2>
+        <div class="signature">
+          <p>ИСКРЕННЕ ВАШИ,</p>
+          <p>ВЛАДИСЛАВ И ЕКАТЕРИНА</p>
+        </div>
+        <div class="final-glow" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- Загрузка JavaScript -->
+    <script src="js/script.js" defer></script>
+
+    <!-- Инициализация при загрузке -->
+    <script>
+      // Минимальный скрипт для инициализации
+      document.addEventListener("DOMContentLoaded", function () {
+        // Удаляем класс no-js если JavaScript включен
+        document.documentElement.classList.remove("no-js");
+        document.documentElement.classList.add("js");
+
+        // Предзагрузка изображений для следующих секций
+        const imagesToPreload = [
+          "assets/images/Frame.jpg",
+          "assets/images/Frame2.jpg",
+          "assets/images/Frame3.jpg",
+          "assets/images/Frame4.jpg",
+          "assets/images/couple-final.jpg",
+        ];
+
+        imagesToPreload.forEach((src) => {
+          const img = new Image();
+          img.src = src;
+        });
+      });
+    </script>
   </body>
 </html>

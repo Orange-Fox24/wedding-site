@@ -1,0 +1,314 @@
+/* ===== БЛОК 8: ФОТО И ВИДЕО ===== */
+.photo-section {
+  background-color: var(--primary-color);
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+  overflow: hidden;
+}
+
+.photo-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+  /* УБИРАЕМ плашку: */
+  padding: 0; /* Убираем padding */
+  background: none; /* Убираем фон */
+  backdrop-filter: none; /* Убираем размытие */
+  border-radius: 0; /* Убираем скругления */
+  border: none; /* Убираем границу */
+}
+
+/* Заголовок - Great Vibes */
+.photo-title {
+  font-family: var(--great-vibes);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--text-color);
+  font-weight: 400;
+  margin-bottom: 60px;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.7);
+}
+
+/* Текст - Montserrat */
+.photo-text {
+  margin-bottom: 70px;
+}
+
+.photo-text p {
+  font-family: var(--montserrat);
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 400;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  letter-spacing: 0.5px;
+}
+
+.text-spacing {
+  height: 30px;
+}
+
+/* Кнопка - ТЕПЕРЬ КАК В БЛОКЕ АНКЕТЫ (без иконки Telegram) */
+.telegram-group-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px; /* Уменьшаем gap, так как нет иконки */
+  background: rgba(132, 0, 23, 0.8);
+  color: var(--text-color);
+  font-family: var(--playfair);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 20px 40px;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  /* УБИРАЕМ иконку: */
+  /* backdrop-filter: blur(5px); - убираем, так как нет иконки */
+  will-change: transform, background, border-color, box-shadow;
+}
+
+.telegram-group-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.7s ease;
+}
+
+.telegram-group-btn:hover,
+.telegram-group-btn:focus {
+  background: rgba(165, 0, 31, 0.9);
+  transform: translateY(-5px) scale(1.05);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(165, 0, 31, 0.3);
+  outline: none;
+}
+
+.telegram-group-btn:hover::before {
+  left: 100%;
+}
+
+.telegram-group-btn:hover i {
+  transform: translateX(8px);
+}
+
+.telegram-group-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+/* УБИРАЕМ стили для иконки Telegram */
+.telegram-group-btn i {
+  display: none; /* Скрываем иконку */
+}
+
+/* Эффект свечения для иконки - УБИРАЕМ */
+/* .telegram-group-btn:hover i {
+    filter: drop-shadow(0 0 8px rgba(0, 136, 204, 0.5));
+} */
+
+/* Анимация появления */
+@keyframes photoAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.photo-section.visible .photo-content {
+  animation: photoAppear 1s ease-out forwards;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+
+/* Планшеты */
+@media (max-width: 1024px) {
+  .photo-section {
+    padding: 60px 20px;
+  }
+
+  .photo-title {
+    font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+    margin-bottom: 50px;
+  }
+
+  .photo-text {
+    margin-bottom: 60px;
+  }
+
+  .photo-text p {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+  }
+
+  .text-spacing {
+    height: 25px;
+  }
+
+  .telegram-group-btn {
+    padding: 18px 35px;
+    font-size: clamp(1rem, 1.8vw, 1.3rem);
+    gap: 12px; /* Уменьшаем gap */
+  }
+}
+
+/* Большие телефоны */
+@media (max-width: 768px) {
+  .photo-section {
+    padding: 50px 15px;
+  }
+
+  .photo-title {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    margin-bottom: 40px;
+  }
+
+  .photo-text {
+    margin-bottom: 50px;
+  }
+
+  .photo-text p {
+    font-size: clamp(1rem, 1.8vw, 1.3rem);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .text-spacing {
+    height: 20px;
+  }
+
+  .telegram-group-btn {
+    padding: 16px 30px;
+    font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+    gap: 10px; /* Уменьшаем gap */
+  }
+}
+
+/* Телефоны */
+@media (max-width: 480px) {
+  .photo-section {
+    padding: 40px 12px;
+    min-height: 80vh;
+  }
+
+  .photo-title {
+    font-size: 2.2rem;
+    margin-bottom: 35px;
+  }
+
+  .photo-text {
+    margin-bottom: 45px;
+  }
+
+  .photo-text p {
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }
+
+  .text-spacing {
+    height: 15px;
+  }
+
+  .telegram-group-btn {
+    padding: 14px 25px;
+    font-size: 0.9rem;
+    gap: 8px; /* Уменьшаем gap */
+    border-width: 1px;
+  }
+}
+
+/* Очень маленькие телефоны */
+@media (max-width: 360px) {
+  .photo-section {
+    padding: 30px 10px;
+  }
+
+  .photo-title {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
+
+  .photo-text p {
+    font-size: 0.85rem;
+  }
+
+  .text-spacing {
+    height: 12px;
+  }
+
+  .telegram-group-btn {
+    padding: 12px 20px;
+    font-size: 0.85rem;
+    gap: 6px; /* Уменьшаем gap */
+    letter-spacing: 1px;
+  }
+}
+
+/* Ландшафтная ориентация */
+@media (max-height: 600px) and (orientation: landscape) {
+  .photo-section {
+    padding: 30px 15px;
+    min-height: 120vh;
+  }
+
+  .photo-title {
+    margin-bottom: 25px;
+  }
+
+  .photo-text {
+    margin-bottom: 35px;
+  }
+
+  .photo-text p {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+  }
+
+  .telegram-group-btn {
+    padding: 12px 25px;
+  }
+}
+
+/* Высокие экраны */
+@media (min-height: 800px) and (max-width: 480px) {
+  .photo-section {
+    min-height: 100vh;
+  }
+
+  .photo-title {
+    margin-bottom: 50px;
+  }
+
+  .photo-text {
+    margin-bottom: 60px;
+  }
+
+  .telegram-group-btn {
+    padding: 18px 35px;
+  }
+}

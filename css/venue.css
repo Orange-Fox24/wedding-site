@@ -1,0 +1,425 @@
+/* ===== БЛОК 4: МЕСТО ПРОВЕДЕНИЯ ===== */
+.venue-section {
+  background-color: var(--primary-color);
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+  overflow: hidden;
+}
+
+.venue-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+/* Заголовок */
+.venue-title {
+  font-family: var(--playfair);
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: 3px;
+  margin-bottom: 60px;
+  color: var(--text-color);
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 20px;
+  text-shadow: 0 3px 15px rgba(0, 0, 0, 0.7);
+}
+
+.venue-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 2px;
+  background: var(--dark-color);
+}
+
+/* Контейнер для локации */
+.venue-location {
+  margin-bottom: 80px;
+  position: relative;
+}
+
+.venue-location:last-child {
+  margin-bottom: 0;
+}
+
+/* Шапка локации с иконкой */
+.location-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.location-icon {
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  flex-shrink: 0;
+}
+
+.location-icon i {
+  font-size: 24px;
+  color: var(--text-color);
+}
+
+.location-name {
+  text-align: left;
+}
+
+.location-name p {
+  font-family: var(--playfair);
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  color: var(--text-color);
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.location-name .address {
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 5px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* Расписание */
+.schedule {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+/* Блок времени */
+.time-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.time {
+  font-family: var(--great-vibes);
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--text-color);
+  font-weight: 400;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  letter-spacing: 2px;
+}
+
+.event {
+  font-family: var(--montserrat);
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 400;
+  text-transform: lowercase;
+  letter-spacing: 1px;
+}
+
+/* Вертикальная разделительная линия */
+.divider-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  flex-shrink: 0;
+}
+
+/* Анимация появления */
+@keyframes venueAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.venue-section.visible .venue-content {
+  animation: venueAppear 1s ease-out forwards;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+
+/* Планшеты */
+@media (max-width: 1024px) {
+  .venue-section {
+    padding: 60px 20px;
+  }
+
+  .venue-title {
+    margin-bottom: 50px;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+  }
+
+  .venue-location {
+    margin-bottom: 70px;
+  }
+
+  .location-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .location-icon i {
+    font-size: 22px;
+  }
+
+  .location-name p {
+    font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  }
+
+  .time {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  }
+
+  .event {
+    font-size: clamp(0.9rem, 1.6vw, 1.2rem);
+  }
+}
+
+/* Большие телефоны */
+@media (max-width: 768px) {
+  .venue-section {
+    padding: 50px 15px;
+  }
+
+  .venue-title {
+    margin-bottom: 40px;
+    font-size: clamp(1.4rem, 2.8vw, 2rem);
+    padding-bottom: 15px;
+  }
+
+  .venue-title::after {
+    width: 80px;
+    height: 1.5px;
+  }
+
+  .venue-location {
+    margin-bottom: 60px;
+  }
+
+  .location-header {
+    gap: 12px;
+    margin-bottom: 35px;
+  }
+
+  .location-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .location-icon i {
+    font-size: 20px;
+  }
+
+  .location-name p {
+    font-size: clamp(1rem, 2vw, 1.4rem);
+  }
+
+  .location-name .address {
+    font-size: 0.9rem;
+  }
+
+  .schedule {
+    gap: 20px;
+  }
+
+  .time {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+  }
+
+  .event {
+    font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+  }
+
+  .divider-line {
+    height: 35px;
+  }
+}
+
+/* Телефоны */
+@media (max-width: 480px) {
+  .venue-section {
+    padding: 40px 12px;
+    min-height: 80vh;
+  }
+
+  .venue-title {
+    margin-bottom: 35px;
+    font-size: 1.3rem;
+    padding-bottom: 12px;
+    letter-spacing: 2px;
+  }
+
+  .venue-title::after {
+    width: 70px;
+  }
+
+  .venue-location {
+    margin-bottom: 50px;
+  }
+
+  .location-header {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+
+  .location-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .location-icon i {
+    font-size: 18px;
+  }
+
+  .location-name {
+    text-align: center;
+  }
+
+  .location-name p {
+    font-size: 1rem;
+  }
+
+  .location-name .address {
+    font-size: 0.85rem;
+    margin-top: 3px;
+  }
+
+  .schedule {
+    gap: 15px;
+  }
+
+  .time-block {
+    gap: 8px;
+  }
+
+  .time {
+    font-size: 1.4rem;
+  }
+
+  .event {
+    font-size: 0.85rem;
+  }
+
+  .divider-line {
+    height: 30px;
+  }
+}
+
+/* Очень маленькие телефоны */
+@media (max-width: 360px) {
+  .venue-section {
+    padding: 30px 10px;
+  }
+
+  .venue-title {
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+    padding-bottom: 10px;
+    letter-spacing: 1.5px;
+  }
+
+  .venue-title::after {
+    width: 60px;
+  }
+
+  .venue-location {
+    margin-bottom: 40px;
+  }
+
+  .location-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .location-icon i {
+    font-size: 16px;
+  }
+
+  .location-name p {
+    font-size: 0.9rem;
+  }
+
+  .location-name .address {
+    font-size: 0.8rem;
+  }
+
+  .time {
+    font-size: 1.2rem;
+  }
+
+  .event {
+    font-size: 0.8rem;
+  }
+
+  .divider-line {
+    height: 25px;
+  }
+}
+
+/* Ландшафтная ориентация */
+@media (max-height: 600px) and (orientation: landscape) {
+  .venue-section {
+    padding: 30px 15px;
+    min-height: 120vh;
+  }
+
+  .venue-title {
+    margin-bottom: 30px;
+  }
+
+  .venue-location {
+    margin-bottom: 40px;
+  }
+
+  .location-header {
+    margin-bottom: 25px;
+  }
+
+  .schedule {
+    gap: 15px;
+  }
+}
+
+/* Высокие экраны */
+@media (min-height: 800px) and (max-width: 480px) {
+  .venue-section {
+    min-height: 100vh;
+  }
+
+  .venue-title {
+    margin-bottom: 50px;
+  }
+
+  .venue-location {
+    margin-bottom: 70px;
+  }
+}

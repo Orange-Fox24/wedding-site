@@ -1,0 +1,450 @@
+/* ===== БЛОК 3: КАЛЕНДАРЬ ===== */
+.calendar-section {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+  overflow: hidden;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)),
+    url("../assets/images/Frame.jpg") center/cover no-repeat fixed;
+}
+
+.calendar-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+  padding: 40px;
+  background: rgba(26, 0, 4, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Заголовок календаря */
+.calendar-title {
+  font-family: var(--great-vibes);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: var(--text-color);
+  margin-bottom: 60px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-shadow: 0 3px 15px rgba(0, 0, 0, 0.7);
+}
+
+/* Календарная сетка */
+.calendar-grid {
+  margin-bottom: 50px;
+}
+
+/* Дни месяца */
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 15px;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--great-vibes);
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  position: relative;
+  cursor: default;
+  font-weight: 400;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Подсвеченный день (26 февраля) */
+.day.highlighted {
+  color: var(--text-color);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  position: relative;
+  z-index: 2;
+  background: rgba(132, 0, 23, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Бордовое сияние вокруг 26 числа */
+.day.highlighted::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(132, 0, 23, 0.8) 0%,
+    rgba(107, 2, 19, 0.6) 20%,
+    rgba(78, 0, 14, 0.4) 45%,
+    transparent 80%
+  );
+  filter: blur(30px);
+  z-index: -1;
+  border-radius: 50%;
+  animation: calendarPulse 3s infinite alternate;
+  will-change: transform, opacity;
+}
+
+/* Второй слой сияния */
+.day.highlighted::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(165, 0, 31, 0.7) 0%,
+    rgba(132, 0, 23, 0.5) 40%,
+    rgba(107, 2, 19, 0.3) 70%,
+    transparent 90%
+  );
+  border-radius: 50%;
+  z-index: -1;
+  animation: calendarInnerPulse 3s infinite alternate;
+  filter: blur(20px);
+  will-change: opacity;
+}
+
+/* Подвал календаря */
+.calendar-footer {
+  text-align: center;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.calendar-footer p {
+  font-family: var(--montserrat);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+/* ===== АНИМАЦИИ ===== */
+@keyframes calendarPulse {
+  0% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  100% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+@keyframes calendarInnerPulse {
+  0% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes calendarAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.calendar-section.visible .calendar-content {
+  animation: calendarAppear 1s ease-out forwards;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+
+/* Планшеты */
+@media (max-width: 1024px) {
+  .calendar-section {
+    padding: 60px 15px;
+    background-attachment: scroll;
+  }
+
+  .calendar-content {
+    padding: 30px;
+    max-width: 700px;
+  }
+
+  .calendar-title {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    margin-bottom: 50px;
+  }
+
+  .calendar-days {
+    max-width: 550px;
+    gap: 12px;
+  }
+
+  .day {
+    font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  }
+
+  .day.highlighted {
+    font-size: clamp(1.3rem, 2.8vw, 2rem);
+  }
+
+  .day.highlighted::before {
+    width: 140%;
+    height: 140%;
+    filter: blur(25px);
+  }
+
+  .day.highlighted::after {
+    width: 115%;
+    height: 115%;
+    filter: blur(18px);
+  }
+
+  .calendar-footer {
+    padding-top: 35px;
+    max-width: 450px;
+  }
+
+  .calendar-footer p {
+    font-size: clamp(1rem, 1.8vw, 1.4rem);
+  }
+}
+
+/* Большие телефоны */
+@media (max-width: 768px) {
+  .calendar-section {
+    padding: 50px 12px;
+  }
+
+  .calendar-content {
+    padding: 25px 20px;
+    max-width: 600px;
+    border-radius: 15px;
+  }
+
+  .calendar-title {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    margin-bottom: 40px;
+  }
+
+  .calendar-days {
+    max-width: 480px;
+    gap: 10px;
+  }
+
+  .day {
+    font-size: clamp(1rem, 2vw, 1.4rem);
+  }
+
+  .day.highlighted {
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  }
+
+  .day.highlighted::before {
+    width: 130%;
+    height: 130%;
+    filter: blur(22px);
+  }
+
+  .day.highlighted::after {
+    width: 110%;
+    height: 110%;
+    filter: blur(16px);
+  }
+
+  .calendar-footer {
+    padding-top: 30px;
+    max-width: 400px;
+  }
+
+  .calendar-footer p {
+    font-size: clamp(0.95rem, 1.6vw, 1.3rem);
+  }
+}
+
+/* Телефоны */
+@media (max-width: 480px) {
+  .calendar-section {
+    padding: 40px 10px;
+    min-height: 80vh;
+  }
+
+  .calendar-content {
+    padding: 20px 15px;
+    max-width: 100%;
+    border-radius: 12px;
+  }
+
+  .calendar-title {
+    font-size: 2rem;
+    margin-bottom: 35px;
+  }
+
+  .calendar-days {
+    max-width: 350px;
+    gap: 8px;
+  }
+
+  .day {
+    font-size: 0.9rem;
+  }
+
+  .day.highlighted {
+    font-size: 1.1rem;
+  }
+
+  .day.highlighted::before {
+    width: 120%;
+    height: 120%;
+    filter: blur(20px);
+  }
+
+  .day.highlighted::after {
+    width: 105%;
+    height: 105%;
+    filter: blur(14px);
+  }
+
+  .calendar-footer {
+    padding-top: 25px;
+    max-width: 320px;
+    border-top-width: 0.5px;
+  }
+
+  .calendar-footer p {
+    font-size: 1rem;
+  }
+}
+
+/* Очень маленькие телефоны */
+@media (max-width: 360px) {
+  .calendar-section {
+    padding: 30px 8px;
+  }
+
+  .calendar-content {
+    padding: 15px 10px;
+  }
+
+  .calendar-title {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
+
+  .calendar-days {
+    max-width: 300px;
+    gap: 6px;
+  }
+
+  .day {
+    font-size: 0.85rem;
+  }
+
+  .day.highlighted {
+    font-size: 1rem;
+  }
+
+  .day.highlighted::before {
+    width: 115%;
+    height: 115%;
+    filter: blur(18px);
+  }
+
+  .day.highlighted::after {
+    width: 100%;
+    height: 100%;
+    filter: blur(12px);
+  }
+
+  .calendar-footer {
+    padding-top: 20px;
+    max-width: 280px;
+  }
+
+  .calendar-footer p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Ландшафтная ориентация */
+@media (max-height: 600px) and (orientation: landscape) {
+  .calendar-section {
+    padding: 30px 15px;
+    min-height: 120vh;
+  }
+
+  .calendar-content {
+    padding: 20px;
+  }
+
+  .calendar-title {
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+  }
+
+  .calendar-days {
+    max-width: 500px;
+    gap: 8px;
+  }
+
+  .day {
+    font-size: 0.9rem;
+  }
+
+  .day.highlighted {
+    font-size: 1.1rem;
+  }
+
+  .calendar-footer {
+    padding-top: 20px;
+  }
+
+  .calendar-footer p {
+    font-size: 1rem;
+  }
+}
+
+/* Высокие экраны */
+@media (min-height: 800px) and (max-width: 480px) {
+  .calendar-section {
+    min-height: 100vh;
+  }
+
+  .calendar-title {
+    margin-bottom: 50px;
+  }
+
+  .calendar-days {
+    max-width: 380px;
+    gap: 10px;
+  }
+
+  .day {
+    font-size: 1rem;
+  }
+
+  .day.highlighted {
+    font-size: 1.2rem;
+  }
+}

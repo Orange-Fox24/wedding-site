@@ -1,0 +1,576 @@
+/* ===== БЛОК 1: ЗАСТАВКА С ЗАМКОМ ===== */
+.cover-section {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Общие стили для обоих фонов */
+.cover-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+}
+
+/* ЧЕРНО-БЕЛЫЙ фон (видимый изначально) */
+.bw-background {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)),
+    url("../assets/images/couple-bw.jpg") center/cover no-repeat;
+  filter: grayscale(100%) contrast(1.1);
+  opacity: 1;
+}
+
+/* ЦВЕТНОЙ фон (скрытый изначально) */
+.color-background {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
+    url("../assets/images/couple-color.jpg") center/cover no-repeat;
+  opacity: 0;
+}
+
+/* После разблокировки */
+.color-background.visible {
+  opacity: 1;
+}
+
+.bw-background.hidden {
+  opacity: 0;
+}
+
+/* Остальные стили остаются без изменений */
+.cover-title {
+  position: relative;
+  z-index: 2;
+  margin-top: 25vh;
+  text-align: center;
+  animation: fadeInDown 1.2s ease-out;
+  transition: all 0.8s ease;
+}
+
+.cover-title h1 {
+  font-family: var(--playfair);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--text-color);
+  text-transform: uppercase;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
+  padding: 0 20px;
+}
+
+/* ... остальные стили без изменений ... */
+
+/* Замок и круг */
+.lock-wrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15vh;
+  cursor: pointer;
+  animation: float 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+.lock-circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  will-change: transform, background, border-color;
+}
+
+.lock-circle:hover,
+.lock-circle:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.05);
+  outline: none;
+}
+
+.lock-icon {
+  width: 32px;
+  height: 32px;
+  color: var(--text-color);
+  stroke-width: 1.5;
+  transition: all 0.7s ease;
+  will-change: transform, color;
+}
+
+.lock-icon.open {
+  color: var(--accent-color);
+  transform: rotateY(180deg);
+}
+
+/* Текст "РАЗБЛОКИРОВАТЬ" */
+.unlock-text {
+  font-family: var(--playfair);
+  font-size: 1rem;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  margin-top: 5px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+/* Скрытый контент */
+.hidden-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 1.2s ease;
+}
+
+.hidden-content.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Дата свадьбы */
+.wedding-date {
+  font-family: var(--playfair);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: 6px;
+  color: var(--text-color);
+  text-align: center;
+  margin-top: 20vh;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  text-shadow: 0 4px 25px rgba(0, 0, 0, 0.8);
+  position: relative;
+  z-index: 4;
+  animation: dateAppear 1s ease-out forwards;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+/* Имена молодоженов */
+.couple-name {
+  font-family: var(--great-vibes);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  color: var(--text-color);
+  text-align: center;
+  position: relative;
+  z-index: 4;
+  margin: 0;
+  padding: 5px 30px;
+  animation: namesAppear 1.2s ease-out 0.3s forwards;
+  opacity: 0;
+  font-weight: 400;
+  letter-spacing: 2px;
+  will-change: opacity, transform;
+}
+
+/* Бордовое сияние под именами */
+.couple-name::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 130%;
+  height: 130%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(132, 0, 23, 0.9) 0%,
+    rgba(107, 2, 19, 0.7) 25%,
+    rgba(78, 0, 14, 0.5) 50%,
+    transparent 85%
+  );
+  filter: blur(35px);
+  z-index: -1;
+  border-radius: 50%;
+  opacity: 0;
+  animation: glowAppear 1.5s ease-out 0.8s forwards;
+}
+
+/* Разделитель между именами */
+.couple-name span.separator {
+  display: inline-block;
+  margin: 0 20px;
+  color: #4e000e;
+  font-size: 1em;
+  vertical-align: middle;
+  position: relative;
+  top: -6px;
+  animation: separatorPulse 2s infinite 1.5s;
+  font-weight: 300;
+  opacity: 0.9;
+}
+
+/* Индикатор скролла */
+.scroll-indicator {
+  position: absolute;
+  bottom: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 4;
+  animation: indicatorAppear 1s ease-out 1.5s forwards;
+  opacity: 0;
+  cursor: pointer;
+  will-change: opacity, transform;
+}
+
+.scroll-indicator:hover,
+.scroll-indicator:focus {
+  outline: none;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(
+    to bottom,
+    var(--text-color),
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  margin-bottom: 10px;
+  animation: lineExtend 1.2s ease-out 1.7s forwards;
+  transform-origin: top;
+  transform: scaleY(0);
+  will-change: transform;
+}
+
+.scroll-indicator p {
+  font-family: var(--montserrat);
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: lowercase;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== АНИМАЦИИ ===== */
+@keyframes dateAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes namesAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes glowAppear {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+  100% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes separatorPulse {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes indicatorAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lineExtend {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+
+/* Планшеты */
+@media (max-width: 1024px) {
+  .cover-title h1 {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  }
+
+  .wedding-date {
+    font-size: clamp(1.4rem, 2.8vw, 2rem);
+    margin-top: 18vh;
+  }
+
+  .couple-name {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+  }
+
+  .lock-circle {
+    width: 65px;
+    height: 65px;
+  }
+
+  .lock-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .unlock-text {
+    font-size: 0.9rem;
+  }
+
+  .couple-name::before {
+    width: 120%;
+    height: 120%;
+    filter: blur(30px);
+  }
+}
+
+/* Большие телефоны */
+@media (max-width: 768px) {
+  .cover-title {
+    margin-top: 20vh;
+  }
+
+  .cover-title h1 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    letter-spacing: 2px;
+  }
+
+  .wedding-date {
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    letter-spacing: 4px;
+    margin-top: 15vh;
+  }
+
+  .couple-name {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    padding: 5px 20px;
+  }
+
+  .couple-name span.separator {
+    margin: 0 15px;
+    font-size: 0.9em;
+    top: -5px;
+  }
+
+  .lock-wrapper {
+    margin-bottom: 12vh;
+  }
+
+  .lock-circle {
+    width: 60px;
+    height: 60px;
+  }
+
+  .lock-icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .unlock-text {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+  }
+
+  .scroll-indicator {
+    bottom: 8vh;
+  }
+
+  .scroll-line {
+    height: 50px;
+  }
+
+  .scroll-indicator p {
+    font-size: 0.75rem;
+  }
+
+  .couple-name::before {
+    width: 110%;
+    height: 110%;
+    filter: blur(25px);
+  }
+}
+
+/* Телефоны */
+@media (max-width: 480px) {
+  .cover-title {
+    margin-top: 15vh;
+  }
+
+  .cover-title h1 {
+    font-size: 1.3rem;
+    letter-spacing: 1.5px;
+    padding: 0 15px;
+  }
+
+  .wedding-date {
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+    margin-top: 12vh;
+    margin-bottom: 5px;
+  }
+
+  .couple-name {
+    font-size: 2rem;
+    padding: 5px 15px;
+  }
+
+  .couple-name span.separator {
+    margin: 0 12px;
+    font-size: 0.8em;
+    top: -4px;
+  }
+
+  .lock-wrapper {
+    margin-bottom: 10vh;
+  }
+
+  .lock-circle {
+    width: 55px;
+    height: 55px;
+  }
+
+  .lock-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .unlock-text {
+    font-size: 0.8rem;
+  }
+
+  .scroll-line {
+    height: 40px;
+  }
+
+  .scroll-indicator p {
+    font-size: 0.7rem;
+  }
+
+  .couple-name::before {
+    width: 100%;
+    height: 100%;
+    filter: blur(20px);
+  }
+}
+
+/* Очень маленькие телефоны */
+@media (max-width: 360px) {
+  .cover-title h1 {
+    font-size: 1.1rem;
+  }
+
+  .wedding-date {
+    font-size: 1rem;
+  }
+
+  .couple-name {
+    font-size: 1.8rem;
+  }
+
+  .lock-circle {
+    width: 50px;
+    height: 50px;
+  }
+
+  .lock-icon {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* Ландшафтная ориентация */
+@media (max-height: 600px) and (orientation: landscape) {
+  .cover-title {
+    margin-top: 15vh;
+  }
+
+  .wedding-date {
+    margin-top: 10vh;
+    font-size: 1.2rem;
+  }
+
+  .couple-name {
+    font-size: 2rem;
+  }
+
+  .lock-wrapper {
+    margin-bottom: 8vh;
+  }
+
+  .scroll-indicator {
+    bottom: 5vh;
+  }
+
+  .scroll-line {
+    height: 35px;
+  }
+}
+
+/* Высокие экраны */
+@media (min-height: 800px) and (max-width: 480px) {
+  .cover-title {
+    margin-top: 30vh;
+  }
+
+  .wedding-date {
+    margin-top: 25vh;
+  }
+
+  .couple-name {
+    font-size: 3rem;
+  }
+}

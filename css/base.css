@@ -1,0 +1,294 @@
+/* ===== БАЗОВЫЕ СТИЛИ И ЦВЕТОВАЯ ПАЛИТРА ===== */
+:root {
+  /* Основная цветовая гамма - бордовый */
+  --primary-color: #840017;
+  --secondary-color: #6b0213;
+  --dark-color: #4e000e;
+  --darker-color: #35000a;
+  --darkest-color: #1a0004;
+  --text-color: #ffffff;
+  --accent-color: #a5001f;
+  --light-accent: #ffd1d9;
+
+  /* Шрифты */
+  --playfair: "Playfair Display", serif;
+  --great-vibes: "Great Vibes", cursive;
+  --montserrat: "Montserrat", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--montserrat);
+  color: var(--text-color);
+  background: var(--darkest-color);
+  line-height: 1.4;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ===== МУЗЫКАЛЬНЫЙ ПЛЕЙЕР ===== */
+.music-player {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.5s ease;
+  display: none;
+}
+
+.music-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(132, 0, 23, 0.9);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.music-btn:hover,
+.music-btn:focus {
+  background: rgba(107, 2, 19, 0.9);
+  transform: scale(1.1);
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+.music-btn i {
+  font-size: 22px;
+  color: var(--text-color);
+}
+
+/* ===== ОБЩИЕ АНИМАЦИИ ===== */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ===== УТИЛИТЫ ===== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+
+/* Большие экраны (более 1200px) */
+@media (min-width: 1200px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+/* Планшеты (768px - 1024px) */
+@media (max-width: 1024px) {
+  .music-player {
+    top: 20px;
+    right: 20px;
+  }
+
+  .music-btn {
+    width: 45px;
+    height: 45px;
+  }
+
+  .music-btn i {
+    font-size: 20px;
+  }
+}
+
+/* Большие телефоны (480px - 768px) */
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+
+  .music-player {
+    top: 15px;
+    right: 15px;
+  }
+
+  .music-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .music-btn i {
+    font-size: 18px;
+  }
+}
+
+/* Телефоны (до 480px) */
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+
+  .music-player {
+    top: 10px;
+    right: 10px;
+  }
+
+  .music-btn {
+    width: 35px;
+    height: 35px;
+  }
+
+  .music-btn i {
+    font-size: 16px;
+  }
+}
+
+/* Очень маленькие телефоны */
+@media (max-width: 360px) {
+  .music-player {
+    top: 8px;
+    right: 8px;
+  }
+
+  .music-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .music-btn i {
+    font-size: 14px;
+  }
+}
+
+/* Ландшафтная ориентация */
+@media (max-height: 600px) and (orientation: landscape) {
+  .music-player {
+    top: 10px;
+    right: 10px;
+  }
+}
+
+/* Высокие экраны */
+@media (min-height: 800px) and (max-width: 480px) {
+  .music-player {
+    top: 20px;
+    right: 20px;
+  }
+}
+
+/* Печать */
+@media print {
+  .music-player,
+  .lock-wrapper,
+  .scroll-indicator {
+    display: none !important;
+  }
+
+  body {
+    color: #000;
+    background: #fff;
+  }
+
+  section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Добавьте в конец файла base.css */
+
+  /* Общие стили для отображения секций при скролле */
+  section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Гарантируем, что последний блок всегда показывается */
+  .final-section {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  /* Защита от переполнения текста */
+  h1,
+  h2,
+  h3,
+  p {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+}

@@ -1,0 +1,454 @@
+/* ===== БЛОК 10: ФИНАЛЬНЫЙ ===== */
+.final-section {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Всегда вверху */
+  padding-top: 15vh; /* Отступ сверху для всех устройств */
+  overflow: hidden;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)),
+    url("../assets/images/couple-final.jpg") center/cover no-repeat;
+  background-attachment: fixed;
+}
+
+/* Контейнер с контентом */
+.final-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+  margin-top: 10vh; /* Добавляем отступ сверху */
+}
+
+/* Заголовок "Ждем Вас" - ВСЕГДА ВВЕРХУ */
+.waiting-title {
+  font-family: var(--great-vibes);
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  color: var(--text-color);
+  font-weight: 400;
+  margin-bottom: 40px;
+  letter-spacing: 3px;
+  text-shadow: 0 2px 25px rgba(0, 0, 0, 0.8), 0 0 35px rgba(132, 0, 23, 0.6);
+  animation: waitingGlow 3s infinite alternate;
+  will-change: text-shadow;
+  position: relative;
+  z-index: 4; /* Выше сияния */
+}
+
+@keyframes waitingGlow {
+  0% {
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.7), 0 0 30px rgba(132, 0, 23, 0.4);
+  }
+  100% {
+    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.9), 0 0 50px rgba(132, 0, 23, 0.8),
+      0 0 70px rgba(165, 0, 31, 0.5);
+  }
+}
+
+/* Подпись - ТОЖЕ ВВЕРХУ */
+.signature {
+  margin-top: 30px;
+  position: relative;
+  z-index: 4; /* Выше сияния */
+}
+
+.signature p {
+  font-family: var(--playfair);
+  font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+  color: var(--text-color);
+  font-weight: 500;
+  letter-spacing: 2px;
+  line-height: 1.4;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+  position: relative;
+  z-index: 4;
+}
+
+.signature p:last-child {
+  font-weight: 600;
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  letter-spacing: 3px;
+  margin-top: 20px;
+  text-shadow: 0 2px 25px rgba(0, 0, 0, 0.9), 0 0 25px rgba(132, 0, 23, 0.5);
+}
+
+/* Бордовое сияние ПОД ТЕКСТОМ (обязательно!) */
+.final-glow {
+  position: absolute;
+  top: 40%; /* Позиционируем ПОД текстом */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 160%;
+  height: 140%;
+  background: radial-gradient(
+    ellipse at center 40%,
+    /* Центр сияния ПОД текстом */ rgba(132, 0, 23, 0.9) 0%,
+    rgba(107, 2, 19, 0.7) 25%,
+    rgba(78, 0, 14, 0.5) 45%,
+    transparent 80%
+  );
+  filter: blur(80px); /* Усиливаем размытие для большего эффекта */
+  z-index: 3; /* Под текстом, но над фоном */
+  border-radius: 50%;
+  animation: finalGlowPulse 4s infinite alternate ease-in-out;
+  pointer-events: none;
+  will-change: transform, opacity;
+  opacity: 0.8;
+}
+
+@keyframes finalGlowPulse {
+  0% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  100% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+/* Дополнительный затемняющий слой для лучшей читаемости */
+.final-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    ellipse at center 40%,
+    /* Совпадает с сиянием */ transparent 10%,
+    rgba(26, 0, 4, 0.7) 40%,
+    rgba(26, 0, 4, 0.9) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Анимация появления */
+@keyframes finalAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.final-section.visible .final-content {
+  animation: finalAppear 1.2s ease-out forwards;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+
+/* Большие экраны и планшеты горизонтально */
+@media (max-width: 1200px) {
+  .final-section {
+    padding-top: 12vh;
+  }
+
+  .final-content {
+    margin-top: 8vh;
+  }
+
+  .waiting-title {
+    font-size: clamp(3rem, 6vw, 5rem);
+    margin-bottom: 35px;
+  }
+
+  .signature p {
+    font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+  }
+
+  .signature p:last-child {
+    font-size: clamp(1.5rem, 2.8vw, 2rem);
+  }
+
+  .final-glow {
+    width: 150%;
+    height: 130%;
+    top: 42%;
+    filter: blur(70px);
+  }
+}
+
+/* Планшеты */
+@media (max-width: 1024px) {
+  .final-section {
+    padding-top: 10vh;
+    background-attachment: scroll;
+  }
+
+  .final-content {
+    margin-top: 6vh;
+    padding: 0 15px;
+  }
+
+  .waiting-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 30px;
+  }
+
+  .signature {
+    margin-top: 25px;
+  }
+
+  .signature p {
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+    margin-bottom: 12px;
+  }
+
+  .signature p:last-child {
+    font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+    margin-top: 15px;
+  }
+
+  .final-glow {
+    width: 140%;
+    height: 120%;
+    top: 44%;
+    filter: blur(60px);
+  }
+}
+
+/* Большие телефоны */
+@media (max-width: 768px) {
+  .final-section {
+    padding-top: 8vh;
+  }
+
+  .final-content {
+    margin-top: 5vh;
+    padding: 0 12px;
+  }
+
+  .waiting-title {
+    font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+  }
+
+  .signature {
+    margin-top: 20px;
+  }
+
+  .signature p {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+  }
+
+  .signature p:last-child {
+    font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+    letter-spacing: 2px;
+    margin-top: 12px;
+  }
+
+  .final-glow {
+    width: 130%;
+    height: 110%;
+    top: 46%;
+    filter: blur(50px);
+  }
+}
+
+/* Телефоны */
+@media (max-width: 480px) {
+  .final-section {
+    padding-top: 6vh;
+    min-height: 80vh;
+  }
+
+  .final-content {
+    margin-top: 4vh;
+    padding: 0 10px;
+  }
+
+  .waiting-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    letter-spacing: 1.5px;
+  }
+
+  .signature {
+    margin-top: 15px;
+  }
+
+  .signature p {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .signature p:last-child {
+    font-size: 1.3rem;
+    letter-spacing: 1.5px;
+    margin-top: 10px;
+  }
+
+  .final-glow {
+    width: 120%;
+    height: 100%;
+    top: 48%;
+    filter: blur(40px);
+  }
+}
+
+/* Очень маленькие телефоны */
+@media (max-width: 360px) {
+  .final-section {
+    padding-top: 5vh;
+  }
+
+  .final-content {
+    margin-top: 3vh;
+    padding: 0 8px;
+  }
+
+  .waiting-title {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+
+  .signature p {
+    font-size: 1rem;
+  }
+
+  .signature p:last-child {
+    font-size: 1.2rem;
+  }
+
+  .final-glow {
+    width: 115%;
+    height: 90%;
+    top: 50%;
+    filter: blur(35px);
+  }
+}
+
+/* Ландшафтная ориентация */
+@media (max-height: 600px) and (orientation: landscape) {
+  .final-section {
+    padding-top: 8vh;
+    min-height: 120vh;
+  }
+
+  .final-content {
+    margin-top: 5vh;
+  }
+
+  .waiting-title {
+    margin-bottom: 20px;
+    font-size: 2.8rem;
+  }
+
+  .signature {
+    margin-top: 15px;
+  }
+
+  .signature p {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+
+  .signature p:last-child {
+    font-size: 1.3rem;
+    margin-top: 10px;
+  }
+
+  .final-glow {
+    top: 45%;
+    height: 120%;
+  }
+}
+
+/* Высокие экраны (выше 800px) */
+@media (min-height: 800px) and (max-width: 480px) {
+  .final-section {
+    min-height: 100vh;
+    padding-top: 15vh;
+  }
+
+  .final-content {
+    margin-top: 10vh;
+  }
+
+  .waiting-title {
+    margin-bottom: 40px;
+    font-size: 3.5rem;
+  }
+
+  .signature {
+    margin-top: 30px;
+  }
+
+  .signature p:last-child {
+    font-size: 1.8rem;
+  }
+
+  .final-glow {
+    top: 42%;
+    height: 120%;
+  }
+}
+
+/* Очень высокие экраны (выше 1000px) */
+@media (min-height: 1000px) {
+  .final-section {
+    padding-top: 20vh;
+  }
+
+  .final-content {
+    margin-top: 15vh;
+  }
+
+  .waiting-title {
+    font-size: 4.5rem;
+    margin-bottom: 60px;
+  }
+
+  .signature p {
+    font-size: 2rem;
+  }
+
+  .signature p:last-child {
+    font-size: 2.5rem;
+  }
+}
+
+/* Печать */
+@media print {
+  .final-section {
+    background: none !important;
+    min-height: auto;
+    padding: 20px !important;
+    padding-top: 10vh !important;
+  }
+
+  .final-content {
+    padding-top: 20px !important;
+    margin-top: 0 !important;
+  }
+
+  .waiting-title {
+    color: #000 !important;
+    text-shadow: none !important;
+    animation: none !important;
+  }
+
+  .signature p {
+    color: #000 !important;
+    text-shadow: none !important;
+  }
+
+  .final-glow,
+  .final-section::before {
+    display: none !important;
+  }
+}
