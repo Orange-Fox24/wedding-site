@@ -194,21 +194,21 @@ const utils = {
         return 'cover';
     },
 
-    // Плавный скролл к элементу
-    smoothScrollTo(element) {
-        if (!element || state.isScrolling) return;
+    // // Плавный скролл к элементу
+    // smoothScrollTo(element) {
+    //     if (!element || state.isScrolling) return;
         
-        state.isScrolling = true;
+    //     state.isScrolling = true;
         
-        element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
+    //     element.scrollIntoView({
+    //         behavior: 'smooth',
+    //         block: 'start'
+    //     });
         
-        setTimeout(() => {
-            state.isScrolling = false;
-        }, CONFIG.ANIMATION_DURATION);
-    }
+    //     setTimeout(() => {
+    //         state.isScrolling = false;
+    //     }, CONFIG.ANIMATION_DURATION);
+    // }
 };
 
 // ===== ОСНОВНАЯ ЛОГИКА =====
