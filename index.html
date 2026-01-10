@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Приглашение на свадьбу | Екатерина & Владислав</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500&family=Alex+Brush&family=Tangerine:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Музыкальный плеер (появится после открытия замка) -->
+    <div class="music-player" id="musicPlayer">
+      <button
+        class="music-btn"
+        id="musicToggle"
+        title="Включить/выключить музыку"
+      >
+        <i class="fas fa-volume-up" id="musicIcon"></i>
+      </button>
+      <audio id="backgroundMusic" loop preload="auto">
+        <source src="assets/music/wedding-music.mp3" type="audio/mpeg" />
+        <source src="assets/music/wedding-music.ogg" type="audio/ogg" />
+        Ваш браузер не поддерживает аудио элемент.
+      </audio>
+    </div>
+    <!-- Аудио для фоновой музыки -->
+    <audio id="backgroundMusic" loop>
+      <source src="assets/music/wedding-music.mp3" type="audio/mpeg" />
+      Ваш браузер не поддерживает аудио.
+    </audio>
+
+    <!-- БЛОК 1: ЗАСТАВКА С ЗАМКОМ -->
+    <section class="cover-section" id="coverSection">
+      <!-- Ч/б фон -->
+      <div class="cover-background" id="coverBackground"></div>
+
+      <!-- Надпись "Приглашение на свадьбу" -->
+      <div class="cover-title">
+        <h1>Приглашение на свадьбу</h1>
+      </div>
+
+      <!-- Замок в кружке -->
+      <div class="lock-wrapper" id="lockWrapper">
+        <div class="lock-circle" id="lockCircle">
+          <!-- Изящный тонкий замок SVG -->
+          <svg
+            class="lock-icon"
+            id="lockIcon"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              x="4"
+              y="11"
+              width="16"
+              height="10"
+              rx="2"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <path
+              d="M8 11V7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7V11"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+        <p class="unlock-text">разблокировать</p>
+      </div>
+
+      <!-- Скрытый контент (появится после клика) -->
+      <div class="hidden-content" id="hiddenContent">
+        <div class="wedding-date">26 ФЕВРАЛЯ 2026</div>
+        <div class="couple-name">Екатерина & Владислав</div>
+        <div class="scroll-indicator">
+          <div class="scroll-line"></div>
+          <p>листайте дальше</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- БЛОК 2: МУЗЫКА И ПРИВЕТСТВИЕ -->
+    <section class="music-section">
+      <div class="section-divider">
+        <div class="vertical-line"></div>
+        <div class="music-control">
+          <p>Если музыка Вас отвлекает, ее можно отключить, нажав на кнопку</p>
+        </div>
+        <div class="vertical-line"></div>
+      </div>
+
+      <div class="greeting-content">
+        <h2>ДОРОГИЕ РОДНЫЕ И БЛИЗКИЕ!</h2>
+        <div class="greeting-text">
+          <p>
+            Приглашаем Вас разделить с нами радость особенного для нас события и
+            стать частью нашей семейной истории!
+          </p>
+          <p>Совсем скоро состоится наша свадьба!</p>
+          <p>
+            И мы не представляем этот праздник без Вас, близких и дорогих нам
+            людей.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- БЛОК 3: КАЛЕНДАРЬ -->
+    <section class="calendar-section">
+      <div class="calendar-header">
+        <h2>26 ФЕВРАЛЯ 2026</h2>
+      </div>
+
+      <div class="calendar-grid">
+        <!-- Февраль 2026 -->
+        <div class="calendar-month">
+          <!-- Числа календаря -->
+          <div class="calendar-days">
+            <!-- Первая неделя -->
+            <span class="calendar-day">1</span>
+            <span class="calendar-day">2</span>
+            <span class="calendar-day">3</span>
+            <span class="calendar-day">4</span>
+            <span class="calendar-day">5</span>
+            <span class="calendar-day">6</span>
+            <span class="calendar-day">7</span>
+
+            <!-- Вторая неделя -->
+            <span class="calendar-day">8</span>
+            <span class="calendar-day">9</span>
+            <span class="calendar-day">10</span>
+            <span class="calendar-day">11</span>
+            <span class="calendar-day">12</span>
+            <span class="calendar-day">13</span>
+            <span class="calendar-day">14</span>
+
+            <!-- Третья неделя -->
+            <span class="calendar-day">15</span>
+            <span class="calendar-day">16</span>
+            <span class="calendar-day">17</span>
+            <span class="calendar-day">18</span>
+            <span class="calendar-day">19</span>
+            <span class="calendar-day">20</span>
+            <span class="calendar-day">21</span>
+
+            <!-- Четвертая неделя -->
+            <span class="calendar-day">22</span>
+            <span class="calendar-day">23</span>
+            <span class="calendar-day">24</span>
+            <span class="calendar-day">25</span>
+            <span class="calendar-day highlight-day">26</span>
+            <span class="calendar-day">27</span>
+            <span class="calendar-day">28</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Аура/сияние вокруг даты -->
+      <div class="date-aura"></div>
+    </section>
+
+    <!-- БЛОК 4: МЕСТО ПРОВЕДЕНИЯ -->
+    <section class="venue-section">
+      <h2 class="venue-title">МЕСТО ПРОВЕДЕНИЯ</h2>
+
+      <div class="venue-item">
+        <div class="venue-icon">
+          <i class="fas fa-heart"></i>
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <div class="venue-details">
+          <h3>ЗАГС</h3>
+          <p>ул. Фабричная 3</p>
+        </div>
+      </div>
+
+      <div class="time-schedule">
+        <div class="time-item">
+          <span>14:15</span>
+          <p>сбор гостей</p>
+        </div>
+        <div class="vertical-divider"></div>
+        <div class="time-item">
+          <span>14:30</span>
+          <p>церемония</p>
+        </div>
+      </div>
+
+      <div class="venue-item">
+        <div class="venue-icon">
+          <i class="fas fa-heart"></i>
+          <i class="fas fa-home"></i>
+        </div>
+        <div class="venue-details">
+          <h3>Загородный домик</h3>
+          <p>ул. Лермонтова 6а</p>
+        </div>
+      </div>
+
+      <div class="time-schedule">
+        <div class="time-item">
+          <span>16:30</span>
+          <p>банкет</p>
+        </div>
+        <div class="vertical-divider"></div>
+        <div class="time-item">
+          <span>00:00</span>
+          <p>окончание</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Скрипты -->
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,705 @@
+/* ===== БАЗОВЫЕ СТИЛИ И ЦВЕТОВАЯ ПАЛИТРА ===== */
+:root {
+  /* Основная цветовая гамма */
+  --primary-color: #840017;
+  --secondary-color: #6b0213;
+  --dark-color: #4e000e;
+  --darker-color: #35000a;
+  --darkest-color: #1a0004;
+  --text-color: #ffffff;
+
+  /* Дополнительные цвета */
+  --gold-color: #d4af37;
+  --light-gold: #ffe8a0;
+  --rose-gold: #e8c4c4;
+  --ivory: #fffff0;
+
+  /* Шрифты */
+  --title-font: "Playfair Display", serif;
+  --script-font: "Dancing Script", cursive;
+  --elegant-font: "Cormorant Garamond", serif;
+  --handwritten: "Alex Brush", cursive;
+  --great-vibes: "Great Vibes", cursive;
+  --tangerine: "Tangerine", cursive;
+}
+/* ===== МУЗЫКАЛЬНЫЙ ПЛЕЙЕР ===== */
+.music-player {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.5s ease;
+  display: none; /* Сначала скрыт */
+}
+
+.music-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(132, 0, 23, 0.9);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.music-btn:hover {
+  background: rgba(107, 2, 19, 0.9);
+  transform: scale(1.1);
+  border-color: #d4af37;
+}
+
+.music-btn i {
+  font-size: 22px;
+  color: white;
+}
+
+/* Анимация появления музыкального плеера */
+@keyframes slideInMusic {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) rotate(-10deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--elegant-font);
+  color: var(--text-color);
+  background: var(--darkest-color);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ===== БЛОК 1: ЗАСТАВКА С ЗАМКОМ ===== */
+.cover-section {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+.cover-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)),
+    url("assets/images/couple-bw.jpg") center/cover no-repeat;
+  filter: grayscale(100%) contrast(1.1);
+  transition: filter 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+.cover-background.colorized {
+  filter: grayscale(0%) contrast(1);
+}
+
+.cover-title {
+  position: relative;
+  z-index: 2;
+  margin-top: 20vh;
+  text-align: center;
+  animation: fadeInDown 1.2s ease-out;
+}
+
+.cover-title h1 {
+  font-family: var(--title-font);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 500;
+  letter-spacing: 3px;
+  color: var(--text-color);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
+  padding: 0 20px;
+}
+
+/* Замок и круг */
+.lock-wrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15vh;
+  cursor: pointer;
+  animation: float 3s ease-in-out infinite;
+}
+
+.lock-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.lock-circle:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.05);
+}
+
+.lock-icon {
+  width: 32px;
+  height: 32px;
+  color: var(--text-color);
+  stroke-width: 1.5;
+  transition: all 0.7s ease;
+}
+
+.lock-icon.open {
+  color: var(--gold-color);
+  transform: rotateY(180deg);
+}
+
+.unlock-text {
+  font-family: var(--elegant-font);
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: lowercase;
+  margin-top: 5px;
+  transition: all 0.3s ease;
+}
+
+/* Скрытый контент */
+.hidden-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 1.2s ease;
+}
+
+.hidden-content.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.wedding-date {
+  font-family: var(--title-font);
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: var(--text-color);
+  text-align: center;
+  margin-bottom: 30px;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
+  animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+.couple-name {
+  font-family: var(--great-vibes);
+  font-size: clamp(3rem, 6vw, 5rem);
+  color: var(--gold-color);
+  text-align: center;
+  margin-bottom: 60px;
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 1s ease-out 1s both;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--text-color), transparent);
+  margin-bottom: 15px;
+}
+
+.scroll-indicator p {
+  font-family: var(--elegant-font);
+  font-size: 1rem;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: lowercase;
+}
+
+/* ===== БЛОК 2: МУЗЫКА И ПРИВЕТСТВИЕ ===== */
+.music-section {
+  background-color: var(--primary-color);
+  padding: 80px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 80px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.vertical-line {
+  width: 1px;
+  height: 120px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--text-color),
+    transparent
+  );
+}
+
+.music-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.music-control p {
+  font-family: var(--elegant-font);
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 300px;
+  line-height: 1.6;
+}
+
+.music-toggle {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.music-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.music-toggle i {
+  font-size: 24px;
+  color: var(--text-color);
+}
+
+/* Приветственный текст */
+.greeting-content {
+  text-align: center;
+  max-width: 800px;
+}
+
+.greeting-content h2 {
+  font-family: var(--title-font);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: 3px;
+  margin-bottom: 50px;
+  color: var(--text-color);
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.greeting-content h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 2px;
+  background: var(--gold-color);
+}
+
+.greeting-text {
+  font-family: var(--elegant-font);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.greeting-text p {
+  margin-bottom: 30px;
+}
+
+.greeting-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== БЛОК 3: КАЛЕНДАРЬ ===== */
+.calendar-section {
+  position: relative;
+  min-height: 100vh;
+  padding: 80px 20px;
+  background: linear-gradient(
+    135deg,
+    var(--dark-color) 0%,
+    var(--secondary-color) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.calendar-header h2 {
+  font-family: var(--title-font);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: var(--text-color);
+  text-align: center;
+  margin-bottom: 60px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.calendar-grid {
+  position: relative;
+  z-index: 2;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.calendar-day {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--elegant-font);
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.calendar-day.highlight-day {
+  background: var(--gold-color);
+  color: var(--darkest-color);
+  font-weight: 600;
+  position: relative;
+  z-index: 3;
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.7);
+  animation: pulse-glow 2s infinite;
+}
+
+/* Аура вокруг даты */
+.date-aura {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(
+    circle,
+    rgba(212, 175, 55, 0.2) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  z-index: 1;
+  animation: rotate-aura 20s linear infinite;
+}
+
+/* ===== БЛОК 4: МЕСТО ПРОВЕДЕНИЯ ===== */
+.venue-section {
+  background-color: var(--primary-color);
+  min-height: 100vh;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.venue-title {
+  font-family: var(--title-font);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: var(--text-color);
+  text-align: center;
+  margin-bottom: 80px;
+  position: relative;
+}
+
+.venue-title::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 2px;
+  background: var(--gold-color);
+}
+
+.venue-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.venue-icon {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.venue-icon i:first-child {
+  font-size: 24px;
+  color: var(--gold-color);
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.venue-icon i:last-child {
+  font-size: 32px;
+  color: var(--text-color);
+}
+
+.venue-details h3 {
+  font-family: var(--title-font);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+
+.venue-details p {
+  font-family: var(--elegant-font);
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.time-schedule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin: 40px 0;
+  width: 100%;
+  max-width: 500px;
+}
+
+.vertical-divider {
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--text-color),
+    transparent
+  );
+}
+
+.time-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 150px;
+}
+
+.time-item span {
+  font-family: var(--title-font);
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--gold-color);
+  margin-bottom: 10px;
+}
+
+.time-item p {
+  font-family: var(--elegant-font);
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: lowercase;
+}
+
+/* ===== АНИМАЦИИ ===== */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.8);
+  }
+}
+
+@keyframes rotate-aura {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+@media (max-width: 768px) {
+  .calendar-days {
+    gap: 10px;
+  }
+
+  .calendar-day {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .section-divider {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .vertical-line {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--text-color),
+      transparent
+    );
+  }
+
+  .time-schedule {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .vertical-divider {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--text-color),
+      transparent
+    );
+  }
+}
+
+@media (max-width: 480px) {
+  .cover-title h1 {
+    font-size: 2rem;
+  }
+
+  .wedding-date {
+    font-size: 1.8rem;
+  }
+
+  .couple-name {
+    font-size: 2.5rem;
+  }
+
+  .calendar-days {
+    gap: 8px;
+  }
+
+  .calendar-day {
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
+}
